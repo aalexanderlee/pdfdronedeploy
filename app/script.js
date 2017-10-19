@@ -31,7 +31,17 @@ funtion notifyError(err, msg) {
   throw new Error(err);
 };
 
-
+// generateListener() will allow for
 function generateListener() {
-  
-}
+  document.querySelector("#msg").innerHTML = "Generating...";
+  document.querySelector("#msg").style = "";
+
+  getCurrentlyViewedPlan()                                       .catch(e => reportError(e,"Error getting Plan."))
+    .then(plan         => getTileDataFromPlan(plan)              .catch(e => reportError(e,"Error getting Tiles."))
+    .then(tileResponse => getAnnotations(plan)                   .catch(e => reportError(e,"Error getting Annotations."))
+    .then(annotations  => sendTilesToServer(plan.geometry,tileResponse,annotations) .catch(e => reportError(e,"Error contacting server."))
+    .then(response     => getResponseBlob(response)              .catch(e => reportError(e,"Error reading response from server."))
+    .then(responseBlob => readResponseBlob(responseBlob)         .catch(e => reportError(e,"Error reading response from server."))
+    .then(reader       => generatePDF(plan, reader, annotations)
+  ))))))
+};
