@@ -372,3 +372,35 @@ input:disabled {
 input:disabled + label {
   color: rgba(0, 0, 0, 0.2);
 }
+
+/*Add Style for HTML containers*/
+.main.row {
+  padding-top: 3px;
+}
+.main.row:hover {
+  background: rgba(158,158,158,.2);
+  border-radius: 2px;
+}
+
+#generate-button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.icon {
+  height: 36px;
+  width: 36px;
+  text-align: center;
+  float:left;
+  padding: 8px;
+}
+
+.col-75 {
+  padding: 8px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 10px
+}
+
+.row {
+  padding-top: 3px;
+}
