@@ -1,2 +1,2 @@
-# pdfdronedeploy
-This is a basic app that can create PDF formatted documentation for aerial map paths built in the Drone Deploy platform. 
+# Drone Deploy PDF Annotation:
+This basic app that creates PDF formatted documentations for aerial maps and flight paths built for the Drone Deploy platform.
