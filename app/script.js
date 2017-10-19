@@ -1,22 +1,37 @@
-new DroneDeploy({version: 1}).then(function(dronedeploy){
-  console.log(dronedeploy);
-});
+// Set the original zoom level of the example image viewed
+var zoom_level = 17;
 
-//Expandable section
-var isExpanded = false;
-var upArrow = 'https://s3.amazonaws.com/drone-deploy-plugins/templates/login-example-imgs/arrow-up.svg';
-var downArrow = 'https://s3.amazonaws.com/drone-deploy-plugins/templates/login-example-imgs/arrow-down.svg';
-var expandArrow = document.querySelector('.expand-arrow');
-var expandBody = document.querySelector('.expand-section');
-var expandRow = document.querySelector('.expand-row');
+// zoomUpdate() will alter our image zoom value from the min 17
+function zoomUpdate(value) {
+  zoom_level = parseInt(document.querySelector("#zoom").value);
 
-expandRow.addEventListener('click', function(){
-  isExpanded = !isExpanded
-  if (isExpanded){
-    expandArrow.src = upArrow;
-    expandBody.style.display = 'block';
-  } else{
-    expandArrow.src = downArrow;
-    expandBody.style.display = 'none';
+  if(document.querySelector("#zoom").value >= 20) {
+    document.querySelector("#msg").innerHTML = "A higher zoom level means long loading times.";
+    document.querySelector("#msg").style = "color:red";
   }
-});
+  else if (document.querySelector("#zoom").value < 20) {
+    document.querySelector("#msg").innerHTML = "";
+    document.querySelector("#msg").style = "";
+  }
+};
+
+// ddApiMounted() will confirm API is ready for the button click event listener for PDF
+function ddApiMounted() {
+  return new Promise((resolve) => {
+    window.dronedeploy.onload(() => {
+      document.querySelector("#generate-button").addEventListener("click", generateListener);
+    });
+  });
+};
+
+// notifyError() will let us know if there was any error for zoomUpdate()
+funtion notifyError(err, msg) {
+  document.querySelector("#msg").innerHTML = msg + "Console check for errors.";
+  document.querySelector("#msg").style = "color:red";
+  throw new Error(err);
+};
+
+
+function generateListener() {
+  
+}
