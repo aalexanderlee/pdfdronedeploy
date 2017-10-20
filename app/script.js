@@ -91,3 +91,35 @@ function readResponseBlob(responseBlob){
 
   });
 }
+
+function generatePDF(plan, reader, annotations){
+
+  responseJSON = JSON.parse(reader.result);
+
+  //Convert mm to pt, using doc.autoTable requires jsPDF in pt form,
+  mm2pt = 2.8346;
+  width = responseJSON.new_width*mm2pt/10
+  left_margin = (180*mm2pt - width)/2 + 15*mm2pt
+
+  // Render columns & rows for annotation table
+  var columns = ["Plan ID", "Distance", "Area", "Volume"];
+  var rows = [];
+  for (a in annotations){
+    annotation = annotations[a];
+
+    var chr = String.fromCharCode(65 + parseInt(a));
+
+    if (annotation.annotationType == "LINE")
+      var row = [chr, annotation.info.geometry[0].value + " m" , "-", "-"];
+
+    else if (annotation.annotationType == "AREA")
+      var row = [chr, "-", annotation.info.geometry[0].value + " m^2", "-"];
+
+    else if (annotation.annotationType == "VOLUME")
+      var row = [chr, "-", "-", annotation.info.geometry[0].value + " m^3"];
+
+    else
+      var row = [chr, "-", "-", "-"];
+
+    rows.push(row);
+  }
