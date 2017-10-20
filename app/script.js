@@ -123,3 +123,19 @@ function generatePDF(plan, reader, annotations){
 
     rows.push(row);
   }
+
+  var doc = new jsPDF("p","pt");
+  doc.text(plan.name, left_margin, 30);
+  doc.addImage(responseJSON.image, "JPEG", left_margin, 40, width, responseJSON.new_height*mm2pt/10);
+  doc.autoTable(columns, rows, {startY:responseJSON.new_height*mm2pt/10+40+10, tableWidth:180*mm2pt, margin:{left:15*mm2pt}});
+  doc.save(plan.name + ".pdf");
+
+  document.querySelector("#msg").innerHTML = "Finished";
+  document.querySelector("#msg").style = "";
+
+}
+
+dronedeployApiReady();
+
+
+ 
