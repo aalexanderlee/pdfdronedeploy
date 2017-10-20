@@ -80,3 +80,14 @@ function sendTilesToServer(planGeo,tileResponse, annotations){
 function getResponseBlob(response){
   return response.blob();
 }
+
+function readResponseBlob(responseBlob){
+
+  return new Promise((resolve) => {
+
+    var reader = new FileReader();
+    reader.onloadend = () => resolve(reader);
+    reader.readAsBinaryString(responseBlob);
+
+  });
+}
