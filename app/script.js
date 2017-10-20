@@ -55,3 +55,28 @@ function getCurrentlyViewedPlan() {
 function getTileDataFromPlan(plan) {
   return window.dronedeploy.Tiles.get({planId: plan.id, layerName: "ortho", zoom_level});
 };
+
+// Returns the annocations for plan.id in API JSON
+function getAnnotations(plan){
+  return window.dronedeploy.Annotations.get(plan.id);
+}
+
+// Returns the res.tile data
+function sendTilesToServer(planGeo,tileResponse, annotations){
+  var body = {
+    tiles: tileResponse.tiles,
+    planGeo: planGeo,
+    zoom_level: zoom_level,
+    annotations: annotations
+  };
+  JSON.stringify(body);
+  return fetch("https://dronedeploy-pdf-generator.herokuapp.com/", {
+    method: "POST",
+    body: JSON.stringify(body)
+  });
+};
+
+
+function getResponseBlob(response){
+  return response.blob();
+}
