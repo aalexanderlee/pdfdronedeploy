@@ -8,6 +8,6 @@ This is a sample image viewed:
 ![Alt text](./app/images/landingpage_one.png?raw=true)
 
 
-This is the PDF of our sample image after event listener is triggered:
+<!-- This is the PDF of our sample image after event listener is triggered:
 
-![Alt text](./app/images/pdftest_one.png?raw=true)
+![Alt text](./app/images/pdftest_one.png?raw=true) -->
