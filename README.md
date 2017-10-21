@@ -4,8 +4,10 @@ This basic app creates PDF formatted documentations for aerial maps and flight p
 
 
 This is a sample image viewed:
-![alt text](./images/landingpage_one.png)
+
+![Alt text](/images/landingpage_one.png?raw=true)
+
 
 
 This is the PDF of our sample image after event listener is triggered:
-![alt text](pdftest_one.png)
+![Alt text](/images/pdftest_one.png?raw=true)
